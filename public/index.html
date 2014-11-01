@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Benitez</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/agency.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body id="page-top" class="index" ng-controller="mainCtrl">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="#page-top">Chatito</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#home">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="intro-text col-md-5 col-xs-21 col-md-offset-3">
+                    <div class="intro-lead-in">Bienvenido al Chat!</div>
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group {{classError}}">
+                            <input type="text" class="form-control" ng-model="m.nickname" placeholder="Nombre">
+                        </div>
+                    </div>
+                    <a href="#home" class="page-scroll btn btn-xl" ng-click="login(m.nickname)" ng-show="!logged">Ingresar</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Services Section -->
+        <section id="home" ng-show="logged">
+            <div class="container">
+                <div class="row " style="padding-top:40px;">
+                    <div class="col-md-8 col-xs-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Chat
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+                                    <li class="media message" ng-repeat="m in msgs">
+                                        <div class="media-body">
+                                            <div class="media">
+                                                <a class="pull-left" href="#">
+                                                  <i class="media-object profile img-circle" src="img/prof.jpg" ></i>
+                                              </a>
+                                              <div class="media-body" >{{m.texto}}
+                                                  <br />
+                                                  <small class="text-muted">{{m.nickname}} | {{m.time}}</small>
+                                                  <hr />
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="panel-footer">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter Message" ng-model="m.texto"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info" type="button" ng-click="send(m)">SEND</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Usuarios
+                        </div>
+                        <div class="panel-body">
+                            <ul class="media-list">
+                                <li class="media" ng-repeat="u in usuarios">
+                                    <div class="media-body">
+                                        <div class="media">
+                                            <a class="pull-left" href="#">
+                                                <img class="media-object img-circle" style="max-height:40px;" src="/img/team/2.jpg" />
+                                            </a>
+                                            <div class="media-body" >
+                                                <h5>{{u.nombre}}</h5>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery Version 1.11.0 -->
+    <!-- <script src="js/jquery-1.11.0.js"></script>-->
+
+
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <script src="js/angular.js"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/agency.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Error</h4>
+                </div>
+                <div class="modal-body">
+                    El usuario con el que intentas ingresar esta usado.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
